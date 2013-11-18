@@ -5,18 +5,23 @@ Setup notes
 ===========
 
 Installed GeoNode
+
 .. code-block:: bash
- # Install GeoNode
- sudo apt-get update
- sudo add-apt-repository ppa:geonode/testing
- sudo apt-get install geonode
- sudo geonode-updateip 54.254.204.189
- 
+
+    sudo apt-get update
+    sudo add-apt-repository ppa:geonode/testing
+    sudo apt-get install geonode
+    sudo geonode-updateip 54.254.204.189
+
+
 Created a custom project
+
 .. code-block:: bash
- cd /usr/src
- sudo django-admin startproject yolanda --template=https://github.com/GeoNode/geonode-project/archive/master.zip -epy,rst
- sudo chown -R ubuntu:ubuntu yolanda
+
+    cd /usr/src
+    sudo django-admin startproject yolanda --template=https://github.com/GeoNode/geonode-project/archive/master.zip -epy,rst
+    sudo chown -R ubuntu:ubuntu yolanda
+
 
 Put it under version control
 .. code-block:: bash
