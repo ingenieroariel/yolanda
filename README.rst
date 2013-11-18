@@ -24,39 +24,52 @@ Created a custom project
 
 
 Put it under version control
+
 .. code-block:: bash
- sudo apt-get install git
- cd /usr/src/yolanda
- git init
- git add *
- git commit -m "Initial commit"
- sudo pip install -e .
+
+    sudo apt-get install git
+    cd /usr/src/yolanda
+    git init
+    git add *
+    git commit -m "Initial commit"
+    sudo pip install -e .
 
 Made it access '''/etc/geonode/local_settings'''
+
 .. code-block:: bash
- sudo ln -s /etc/geonode/local_settings.py /usr/src/yolanda/yolanda/local_settings.py
- 
+
+    sudo ln -s /etc/geonode/local_settings.py /usr/src/yolanda/yolanda/local_settings.py
+
+
 Modified local_settings.py to access this project's templates and static files
+
 .. code-block:: python
- LOCAL_ROOT = os.path.abspath('/usr/src/yolanda/yolanda')
- GEONODE_ROOT = os.path.dirname(geonode.__file__)
+
+    LOCAL_ROOT = os.path.abspath('/usr/src/yolanda/yolanda')
+    GEONODE_ROOT = os.path.dirname(geonode.__file__)
  
- TEMPLATE_DIRS = (
- '/etc/geonode/templates',
- os.path.join(LOCAL_ROOT, 'templates'),
- os.path.join(GEONODE_ROOT, 'templates'),
- )
+    TEMPLATE_DIRS = (
+    '/etc/geonode/templates',
+    os.path.join(LOCAL_ROOT, 'templates'),
+    os.path.join(GEONODE_ROOT, 'templates'),
+    )
  
- STATICFILES_DIRS = [
- '/etc/geonode/media',
- os.path.join(LOCAL_ROOT, 'static'),
- os.path.join(GEONODE_ROOT, 'static'),
- ]
+    STATICFILES_DIRS = [
+    '/etc/geonode/media',
+    os.path.join(LOCAL_ROOT, 'static'),
+    os.path.join(GEONODE_ROOT, 'static'),
+    ]
+
 
 Modified /var/www/geonode/wsgi/geonode.wsgi to use this project's settings
+
 .. code-block:: python
- os.environ['DJANGO_SETTINGS_MODULE'] = 'yolanda.settings'
+
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'yolanda.settings'
+
 
 Restarted Apache for the changes to take effect:
+
 .. code-block:: bash
- sudo service apache2 restart
+
+    sudo service apache2 restart
