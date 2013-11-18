@@ -1,47 +1,57 @@
 Yolanda
 ========================
 
-You should write some docs, it's good for the soul.
+Setup notes
+===========
 
-Installation
-------------
+Installed GeoNode
+.. code-block:: bash
+ # Install GeoNode
+ sudo apt-get update
+ sudo add-apt-repository ppa:geonode/testing
+ sudo apt-get install geonode
+ sudo geonode-updateip 54.254.204.189
+ 
+Created a custom project
+.. code-block:: bash
+ cd /usr/src
+ sudo django-admin startproject yolanda --template=https://github.com/GeoNode/geonode-project/archive/master.zip -epy,rst
+ sudo chown -R ubuntu:ubuntu yolanda
 
-Install geonode with::
+Put it under version control
+.. code-block:: bash
+ sudo apt-get install git
+ cd /usr/src/yolanda
+ git init
+ git add *
+ git commit -m "Initial commit"
+ sudo pip install -e .
 
-    $ sudo add-apt-repository ppa:geonode/testing
+Made it access '''/etc/geonode/local_settings'''
+.. code-block:: bash
+ sudo ln -s /etc/geonode/local_settings.py /usr/src/yolanda/yolanda/local_settings.py
+ 
+Modified local_settings.py to access this project's templates and static files
+.. code-block:: python
+ LOCAL_ROOT = os.path.abspath('/usr/src/yolanda/yolanda')
+ GEONODE_ROOT = os.path.dirname(geonode.__file__)
+ 
+ TEMPLATE_DIRS = (
+ '/etc/geonode/templates',
+ os.path.join(LOCAL_ROOT, 'templates'),
+ os.path.join(GEONODE_ROOT, 'templates'),
+ )
+ 
+ STATICFILES_DIRS = [
+ '/etc/geonode/media',
+ os.path.join(LOCAL_ROOT, 'static'),
+ os.path.join(GEONODE_ROOT, 'static'),
+ ]
 
-    $ sudo apt-get update
+Modified /var/www/geonode/wsgi/geonode.wsgi to use this project's settings
+.. code-block:: python
+ os.environ['DJANGO_SETTINGS_MODULE'] = 'yolanda.settings'
 
-    $ sudo apt-get install geonode
-
-Create a new template based on the geonode example project.::
-    
-    $ django-admin startproject my_geonode --template=https://github.com/GeoNode/geonode-project/archive/master.zip -epy,rst 
-    $ sudo pip install -e my_geonode
-
-.. note:: You should NOT use the name geonode for your project as it will conflict with the default geonode package name.
-
-Usage
------
-
-Rename the local_settings.py.sample to local_settings.py and edit it's content by setting the SITEURL and SITENAME.
-
-Edit the file /etc/apache2/sites-available/geonode and change the following directive from:
-
-    WSGIScriptAlias / /var/www/geonode/wsgi/geonode.wsgi
-
-to:
-
-    WSGIScriptAlias / /path/to/my_geonode/my_geonode/wsgi.py
-
-Restart apache::
-
-    $ sudo service apache2 restart
-
-Edit the templates in my_geonode/templates, the css and images to match your needs.
-
-In the my_geonode folder run::
-
-    $ python manage.py collectstatic
-
-
+Restarted Apache for the changes to take effect:
+.. code-block:: bash
+ sudo service apache2 restart
