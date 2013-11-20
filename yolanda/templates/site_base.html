@@ -1,4 +1,36 @@
 {% extends "base.html" %}
+{% load i18n avatar_tags announcements_tags %}
+
 {% block extra_head %}
       <link href="{{ STATIC_URL }}css/site_base.css" rel="stylesheet"/>
 {% endblock %}
+
+    {% block footer %}
+    <footer class="footer">
+      <div class="container">
+        <div class="pull-left">
+          <img  src="{{ STATIC_URL }}img/am_redcross.png" alt="American Red Cross"/>
+          <img  src="{{ STATIC_URL }}img/gfdrr_logo.png" alt="American Red Cross"/>
+          {% trans "Powered by" %} <a href="http://geonode.org">{% trans "GeoNode" %}</a> <em>{% trans "version" %} {{ VERSION }}</em> |
+          <a href="{% url "developer" %}">{% trans "Developers" %}</a> |
+          <a href="{% url "about" %}">{% trans "About" %}</a>
+        </div>
+        <div class="pull-right">
+        {% if csrf_token != "NOTPROVIDED" %}
+          {% get_current_language as LANGUAGE %}
+          <form class="form-inline" action="/i18n/setlang/" method="post">
+          {% csrf_token %}
+            <label>{% trans "Language" %}</label>
+            <select class="input span2" name="language" onchange="javascript:form.submit()">
+              {% for lang in LANGUAGES %}
+              <option value="{{ lang.0 }}" {% ifequal LANGUAGE_CODE lang.0 %} selected="selected"{% endifequal %}>
+                {{ lang.1 }}
+              </option>
+              {% endfor %}
+            </select>
+          </form>
+        {% endif %}
+        </div> <!-- /.pull-right -->
+      </div> <!-- /.container -->
+    </footer>
+    {% endblock footer %}
