@@ -203,6 +203,8 @@ INSTALLED_APPS = (
     'geonode.social',
     'geonode.catalogue',
     'geonode.documents',
+
+    'raven.contrib.django.raven_compat',
 )
 
 LOGGING = {
