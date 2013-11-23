@@ -519,7 +519,7 @@ MAP_BASELAYERS = [{
     "type":"OpenLayers.Layer",
     "args":["No background"],
     "visibility": False,
-    "fixed": False,
+    "fixed": True,
     "group":"background"
   }, {
     "source": {"ptype": "gxp_osmsource"},
@@ -528,6 +528,11 @@ MAP_BASELAYERS = [{
     "visibility": True,
     "fixed": True,
     "group":"background"
+  }, {
+    "source": {"ptype": "gxp_mapquestsource"},
+    "name":"osm",
+    "group":"background",
+    "visibility": False
   }, {
     "source": {"ptype": "gxp_mapquestsource"},
     "name":"naip",
@@ -559,94 +564,7 @@ MAP_BASELAYERS = [{
       {"buffer": 0}
     ]
 
-},
-{
-    "source": {"ptype": "gxp_olsource"},
-    "type":"OpenLayers.Layer.WMS",
-    "group":None,
-    "visibility": True,
-    "args":[
-      "Digital Globe Crisis Event Footprint",
-      "https://services.digitalglobe.com/mapservice/wmsaccess",
-      {
-        "layers":["DigitalGlobe:CrisisEventFootprint" ],
-        "format":"image/jpeg",
-        "connectid": "2de3ac2b-69f8-4876-bc5c-b67d16c90441",
-        "transparent":True,
-
-      }
-    ]
-
-},
-{
-    "source": {"ptype": "gxp_olsource"},
-    "type":"OpenLayers.Layer.WMS",
-    "group":None,
-    "visibility": True,
-    "args":[
-      "Digital Globe Imagery",
-      "https://services.digitalglobe.com/mapservice/wmsaccess",
-      {
-        "layers":["DigitalGlobe:Imagery" ],
-        "format":"image/jpeg",
-        "connectid": "2de3ac2b-69f8-4876-bc5c-b67d16c90441",
-        "transparent":True,
-
-      }
-    ]
-
-},
-{
-    "source": {"ptype": "gxp_olsource"},
-    "type":"OpenLayers.Layer.WMS",
-    "group":None,
-    "visibility": True,
-    "args":[
-      "Digital Globe Crisis Event",
-      "https://services.digitalglobe.com/mapservice/wmsaccess",
-      {
-        "layers":["DigitalGlobe:CrisisEvent" ],
-        "format":"image/jpeg",
-        "connectid": "2de3ac2b-69f8-4876-bc5c-b67d16c90441",
-        "transparent":True,
-
-      }
-    ]
-},
-{
-    "source": {"ptype": "gxp_olsource"},
-    "type":"OpenLayers.Layer.TMS",
-    "group":None,
-    "visibility": True,
-    "args":[
-      "HIU Tacloban Post Event",
-      "http://hiu-maps.net/hot/",
-      {
-        "layername":["taclobancity-post"],
-        "format":"png",
-        "transparent":True,
-
-      }
-    ]
-},
-{
-    "source": {"ptype": "gxp_olsource"},
-    "type":"OpenLayers.Layer.TMS",
-    "group":None,
-    "visibility": True,
-    "args":[
-      "HIU Cebu Post Event",
-      "http://hiu-maps.net/hot/",
-      {
-        "layername":["cebu-post"],
-        "format":"png",
-        "transparent":True,
-
-      }
-    ]
-}
-
-]
+}]
 
 LEAFLET_CONFIG = {
     'TILES_URL': 'http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png'
@@ -654,7 +572,7 @@ LEAFLET_CONFIG = {
 
 
 # Require users to authenticate before using Geonode
-LOCKDOWN_GEONODE = True
+LOCKDOWN_GEONODE = True 
 
 # Add additional paths (as regular expressions) that don't require authentication.
 AUTH_EXEMPT_URLS = ()
