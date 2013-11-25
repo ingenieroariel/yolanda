@@ -20,7 +20,7 @@
 
 # Django settings for the GeoNode project.
 import os
-
+import geonode
 #
 # General Django development settings
 #
@@ -28,6 +28,7 @@ import os
 # Defines the directory that contains the settings file as the PROJECT_ROOT
 # It is used for relative settings elsewhere.
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+GEONODE_ROOT = os.path.dirname(geonode.__file__)
 
 # Setting debug to true makes Django serve static media and
 # present pretty error pages.
@@ -124,11 +125,18 @@ STATICFILES_FINDERS = (
 # INSTALLED_APPS, se there is no need to add maps/templates or admin/templates
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, "templates"),
+    os.path.join(GEONODE_ROOT, "templates")
+)
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+    os.path.join(GEONODE_ROOT, 'static')
 )
 
 # Location of translation files
 LOCALE_PATHS = (
     os.path.join(PROJECT_ROOT, "locale"),
+    os.path.join(GEONODE_ROOT, "locale")
 )
 
 # Make this unique, and don't share it with anybody.
