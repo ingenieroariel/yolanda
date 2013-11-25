@@ -570,6 +570,9 @@ LEAFLET_CONFIG = {
     'TILES_URL': 'http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png'
 }
 
+DG_SERVICE_CONNECTID = "2de3ac2b-69f8-4876-bc5c-b67d16c90441"
+DG_SERVICE_USERNAME = "public"
+DG_SERVICE_PASSWORD = "view"
 
 # Require users to authenticate before using Geonode
 LOCKDOWN_GEONODE = True 
