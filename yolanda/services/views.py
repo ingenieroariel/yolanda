@@ -25,7 +25,7 @@ class ServiceProxy(View):
     def proxy_request(self):
         path = self.request.get_full_path()
         headers = self.headers
-        http = httplib2.Http()
+        http = httplib2.Http(disable_ssl_certificate_validation=True)
         http.add_credentials(*self.get_credentials())
 
         resp, content = http.request(self.request_base + "?{0}".format(self.get_request_parameters().urlencode()),
