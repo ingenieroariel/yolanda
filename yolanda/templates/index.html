@@ -52,7 +52,7 @@ This template is overridden to move the Latest Maps section above the Contribute
     <aside class="span4">
      <div class="well">
         <section class="article-list latest-maps">
-        <h2>{% trans "Latest Maps" %}</h2>
+        <h2 class="index-aside-header">{% trans "Latest Maps" %}</h2>
           {% featured_maps as featured_maps %}
           {% for map in featured_maps %}
             {% include "maps/_map_list_item.html" %}
@@ -62,7 +62,7 @@ This template is overridden to move the Latest Maps section above the Contribute
       {% if request.user.is_authenticated %}
         <div class="well">
           <section>
-            <h2>{% trans "Contribute" %}</h2>
+            <h2 class="index-aside-header">{% trans "Contribute" %}</h2>
             <p class="main-actions">
             {% blocktrans %}
               GeoNode enables you to upload, manage, and browse data layers. Search for data that is valuable to you, or upload your own data.
