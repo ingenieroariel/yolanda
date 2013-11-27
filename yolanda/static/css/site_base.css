@@ -19,3 +19,32 @@ ul.stats a {
   -webkit-border-top-right-radius: 4px;
   -moz-border-top-right-radius: 4px;
 }
+
+.hero-unit{
+  background-image: url(../img/yolanda.jpg);
+  overflow: visible;
+  width: 3000px;
+  margin-left: -400px;
+  z-index:0;
+}
+
+.hero-unit-content {
+  z-index:10;
+  width: 900px;
+  margin-left: 400px;
+  margin-top: -10px;
+  padding-top: 30px;
+}
+
+.hero-unit-content > h1 {
+  color: white;
+}
+.intro > p {
+ color: white;
+ text-shadow: 1px 1px #111111;
+}
+
+.content-wrap{
+padding: 0 0 0 20px;
+margin-top: -10px;
+}
