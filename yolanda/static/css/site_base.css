@@ -44,7 +44,11 @@ ul.stats a {
  text-shadow: 1px 1px #111111;
 }
 
+.intro > span {
+ color: white;
+ text-shadow: 1px 1px #111111;
+}
 .content-wrap{
 padding: 0 0 0 20px;
-margin-top: -10px;
+// margin-top: -10px;
 }
