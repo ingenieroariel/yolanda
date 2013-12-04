@@ -25,6 +25,7 @@ ul.stats a {
   overflow: visible;
   width: 3000px;
   margin-left: -400px;
+  margin-top: -10px;
   z-index:0;
 }
 
@@ -50,7 +51,6 @@ ul.stats a {
 }
 .content-wrap{
 padding: 0 0 0 20px;
-// margin-top: -10px;
 }
 
 footer.footer img {
