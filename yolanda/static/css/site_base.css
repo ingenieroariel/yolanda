@@ -25,6 +25,7 @@ ul.stats a {
   overflow: visible;
   width: 3000px;
   margin-left: -400px;
+  margin-top: -40px;
   z-index:0;
 }
 
@@ -44,7 +45,18 @@ ul.stats a {
  text-shadow: 1px 1px #111111;
 }
 
-.content-wrap{
-padding: 0 0 0 20px;
-margin-top: -10px;
+.intro > span {
+ color: white;
+ text-shadow: 1px 1px #111111;
 }
+
+footer.footer img {
+ margin-right: 150px;
+ vertical-align:middle;
+}
+
+footer.footer {
+ padding: 10px 0;
+ font-size: 14px;
+}
+
