@@ -1,0 +1,75 @@
+{"rules":[
+  {
+    "name":"damage_polygons",
+    "filter":{
+      "typhoon:damage":["yes"],
+      "geom":["closed"]
+    },
+    "defaultFields":["timestamp", "changeset", "tags", "user", "version"],
+    "fields":{
+      "building":{"name":"building", "type":"STRING"},
+      "source":{"name":"source", "type":"STRING"},
+      "geom":{"name":"geom", "type":"POLYGON"}
+    }
+  },
+  {
+    "name":"damage_lines",
+    "filter":{
+      "typhoon:damage":["yes"],
+      "geom":["open"]
+    },
+    "defaultFields":["timestamp", "changeset", "tags", "user", "version"],
+    "fields":{
+      "building":{"name":"building", "type":"STRING"},
+      "source":{"name":"source", "type":"STRING"},
+      "geom":{"name":"geom", "type":"LINESTRING"}
+    }
+  },
+ {
+        "name":"hospital_points_osm",
+        "filter":
+            {
+                "amenity":["hospital","doctors","dentist","clinic","pharmacy"]
+            },
+        "fields":
+            {
+                "name":{"name":"name", "type":"STRING"},
+                "addr:housenumber":{"name":"addr_housenumber", "type":"STRING"},
+                "addr:housename":{"name":"addr_housename", "type":"STRING"}, 
+                "addr:street":{"name":"addr_street", "type":"STRING"}, 
+                "amenity":{"name":"amenity", "type":"STRING"}, 
+                "geom":{"name":"geom", "type":"POINT"}
+            }
+    },
+    {
+        "name":"hospital_polygons_osm",
+        "filter":
+            {
+                "amenity":["hospital","doctors","dentist","clinic","pharmacy"]
+            },
+        "fields":
+            {
+                "name":{"name":"name", "type":"STRING"},
+                "addr:housenumber":{"name":"addr_housenumber", "type":"STRING"},
+                "addr:housename":{"name":"addr_housename", "type":"STRING"}, 
+                "addr:street":{"name":"addr_street", "type":"STRING"}, 
+                "amenity":{"name":"amenity", "type":"STRING"}, 
+                "geom":{"name":"geom", "type":"MULTIPOLYGON"}
+            }
+    },
+    {
+        "name":"buildings_osm",
+        "filter":
+            {
+                "building":[]
+            },
+        "fields":
+            {
+                "name":{"name":"name", "type":"STRING"},
+                "addr:housenumber":{"name":"addr_housenumber", "type":"STRING"},
+                "addr:housename":{"name":"addr_housename", "type":"STRING"},
+                "addr:street":{"name":"addr_street", "type":"STRING"},
+                "geom":{"name":"geom", "type":"MULTIPOLYGON"}
+            }
+    }
+]}
