@@ -1,6 +1,10 @@
 import os
 import simplejson as json
 import wget
+from django.core.files import File
+from geonode.documents.models import Document
+from django.contrib.auth.models import User
+from datetime import datetime
 
 base_dir = os.getcwd()
 base_url = "https://s3-us-west-2.amazonaws.com/arcmaps/haiyan/"
@@ -11,7 +15,19 @@ with open('centroids.json', 'r') as f:
     maps = json.load(f)
     for map in maps:
         url = base_url + map['filename'] + '.pdf'
-        #print url
-        #filename = wget.download(url)
-        #print filename 
-        os.system('curl -X POST -F permissions=\'%s\' -F title="%s" -F file=@%s -F csrfmiddlewaretoken=%s -v -c cookies.txt -b cookies.txt http://localhost:8000/documents/upload/' % (permissions_string, map['title'], str(base_dir + '/pdf/' + map['filename'].replace('(', '\(').replace(')', '\)') + '.pdf'), csrftoken))
+        print url
+        filename = wget.download(url)
+        print filename
+        file = open(filename)
+        djangofile = File(file)
+        doc = Document()
+        doc.title = map['title']
+        doc.abstract = map['description']
+        doc.doc_file = djangofile
+        doc.owner = User.objects.all()[0]
+        doc.date =  datetime.strptime(map['date'], '%m/%d/%Y')
+        doc.bbox_x0 = map['longitude']
+        doc.bbox_y0 = map['latitude']
+        doc.bbox_x1 = map['longitude'] 
+        doc.bbox_y1 = map['latitude']
+        doc.save()
